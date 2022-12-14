@@ -1,107 +1,136 @@
-
-body{
-    font-family: UnaV;
-
-    // background: url("../../assets/images/fondpizza.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    overflow: hidden;
-    
+* {
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+h1 {
+  font-size: 50px;
+}
+
+.background {
+  width: 100vh;
+  height: 100vh;
+}
+
 #loginContainer{
-    border: 5px solid rgb(98, 98, 98);
-    // opacity: 0.9;
-    border-radius: 8px;
-    background-color: rgb(184, 184, 184);
+  // opacity: 0.9;
+  border-radius: 40px;
+  background-color: rgba(0, 0, 0, 0.436);
+  backdrop-filter: blur(5px);
 
-    margin:10px;
-    width: 70vw;
-    height: 60vh;
+  margin:10px;
+  width: 50vw;
+  height: 60vh;
 }
+
 #mainDiv
 {    
-    height: 100vh;
+  background-image: url("../../assets/images/background_unavita.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
   display:flex;
-  justify-content: center;
+  justify-content: center;  
   align-items: center;
 }
 
-
 .logo{
-    margin:20px;
-    width: 60%;
-    height: auto;
-    transition: 0.5s;
+  padding: 40px;
+  width: 60%;
+  height: auto;
+  transition: 0.5s;
 
 }
 .titrecontainer{
-    font-family: UnaVBold;
-    display: flex;
-    flex-direction: row;
-    // justify-content: center;
-    // align-items: center;
-    font-size: 1.5vw;
+  font-family: UnaVBold;
+  display: flex;
+  flex-direction: row;
+  // justify-content: center;
+  // align-items: center;
+  font-size: 1.5vw;
 }
 
-  /* Full-width inputs */
+/* Full-width inputs */
 
-  input[type=text]{
-    background-color: white;
-    transition: background-color 1s ease;
+.input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 
-  }
-  input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    
-    box-sizing: border-box;
-  }
-  
-  /* Set a style for all buttons */
-  button {
-    background-color: rgb(98, 98, 98);
-    border: 1px solid rgb(48, 48, 48);
-    transition: background-color 1s ease;
+input[type=text]{
+  background-color: white;
+  transition: background-color 1s ease;
+  border-radius: 15px;
 
+}
+input[type=text], input[type=password] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  
+  box-sizing: border-box;
+  border-radius: 15px;
 
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  // #loginContainer:hover{
-  //   // input[type=text]{
-  //   //     background-color: rgb(160, 204, 169); 
-  //   //     border: 1px solid rgb(110, 195, 127);
-  //   //     transition: background-color 0.8s ease;
+}
 
-  //   // }
-  //   // button{
-  //   //     background-color: rgb(222, 157, 158);
-  //   //     border: 1px solid rgb(205, 104, 105);
-  //   //     transition: background-color 0.8s ease;
-  //   // }
-  //   // .logo{
-  //   //   width:70%;
-  //   //   height: auto;
-  //   //   transition: 0.5s;
-  //   // }
-  //   // opacity: 1;
-  // }
-  /* Add a hover effect for buttons */
-  button:hover {
-    opacity: 0.8;
-  }
-  
-  /* Add padding to containers */
-  .container {
-    padding: 16px;
-  }
-  
-  
+/* Set a style for all buttons */
+button {
+  border-radius: 15px;
+  background-color: rgb(155, 155, 155);
+  transition: background-color 0.5s ease;
+  border: 2px solid rgb(98, 98, 98);
+  font-size: 15px;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  cursor: pointer;
+  width: 20%;
+}
+
+button:hover {
+  background-color: rgb(67, 67, 67);
+}
+
+.container_buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+// #loginContainer:hover{
+//   // input[type=text]{
+//   //     background-color: rgb(160, 204, 169); 
+//   //     border: 1px solid rgb(110, 195, 127);
+//   //     transition: background-color 0.8s ease;
+
+//   // }
+//   // button{
+//   //     background-color: rgb(222, 157, 158);
+//   //     border: 1px solid rgb(205, 104, 105);
+//   //     transition: background-color 0.8s ease;
+//   // }
+//   // .logo{
+//   //   width:70%;
+//   //   height: auto;
+//   //   transition: 0.5s;
+//   // }
+//   // opacity: 1;
+// }
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
