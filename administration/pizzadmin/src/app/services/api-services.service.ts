@@ -6,7 +6,7 @@ import { catchError, retry, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  URLAPI = 'https://api.pexilo.net/capi/api/';
+  URLAPI = 'http://localhost:3000/api/';
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +18,7 @@ export class ApiService {
   //   return new HttpHeaders().set('Authorization', this.getToken());
   // }
 
-  public doGet(url: string, options?: any) {
+  public doGet(url: string, options?: any):any {
     return this.http
       .get(this.URLAPI + url, options)
       .pipe(retry(1), catchError(this.errorHandler));

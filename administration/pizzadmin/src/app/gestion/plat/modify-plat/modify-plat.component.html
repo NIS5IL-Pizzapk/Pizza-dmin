@@ -1,9 +1,12 @@
-<p>MODIFICATION DE PLAT</p>
+<p>MODIFICATION DE PRODUITS</p>
 
 <div>
-    <label><b>Plats :</b></label>
-    <select name="pets" id="pet-select">
-        <option value="plat1">Plat 1</option>
-        <option value="plat2">Plat 2</option>
-    </select>
+      <mat-form-field appearance="fill">
+        <mat-label>Produits</mat-label>
+        <mat-select [value]="" (change)="onChange($event)">
+          <mat-option *ngFor="let produit of produits" [value]="produit.id">
+            {{produit.id}} : {{produit.nom}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 </div>
