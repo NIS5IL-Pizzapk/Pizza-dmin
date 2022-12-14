@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <p><a href="/gestion/plats">gestion plats</a></p>
-    <p><a href="/gestion/ingredients">gestion suppléments</a></p>
-    <p><a href="/gestion/utilisateurs">gestion utilisateurs</a></p>    
-    <p><a href="login">deconnexion</a></p>    
-    <div class=""></div>
-</body>
-</html>
+<div class="container">
+    <div class="single_link">
+        <div class="link">
+            <input type="submit" value="Gestion des plats" onclick="window.location='/gestion/plats';" />
+        </div>
+
+        <div class="link">
+            <input type="submit" value="Gestion des restaurants" onclick="window.location='/gestion/restaurants';" />
+        </div>
+    </div>
+
+    <div class="single_link">
+        <div class="link">
+            <input type="submit" value="Gestion des suppléments" onclick="window.location='/gestion/ingredients';" />  
+        </div>
+
+        <div class="link">
+            <input type="submit" value="Gestion des utilisateurs" onclick="window.location='/gestion/utilisateurs';" />
+        </div>
+    </div>
+
+    <div class="btn_deconnexion">
+        <a href="login">Déconnexion</a>
+    </div>
+
+</div>

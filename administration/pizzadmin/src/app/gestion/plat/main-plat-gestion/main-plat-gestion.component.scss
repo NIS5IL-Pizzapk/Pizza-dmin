@@ -1,0 +1,13 @@
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 60px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.form_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
