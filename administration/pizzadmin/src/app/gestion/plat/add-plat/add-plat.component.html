@@ -1,33 +1,59 @@
-<p>AJOUT DE PLAT</p>
+<div class="mainContainer">
+    <h2>AJOUT</h2>
 
 
-<form>
+    <form [formGroup]="produitForm"  (ngSubmit)="onSubmit()">
+
+
+      
     <div>
-        <label><b>Type :</b></label>
-        <select name="pets" id="pet-select">
-            <option value="pizza">Pizza</option>
-            <option value="hamburger">Hamburger</option>
-        </select>
-    </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Types</mat-label>
+        <mat-select formControlName="type" [errorStateMatcher]="matcher">
+          <mat-option *ngFor="let type of types" [value]="type.id">
+            {{type.nom}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
 
-    <div>
-        <label><b>Nom :</b></label>
-        <input type="text" placeholder="nom du plat" name="name"> 
-    </div>
-
-    <div>
-        <label><b>Description :</b></label>
-    <input type="text" placeholder="Description du plat" name="description">
-    </div>
 
     <div>
-        <label><b>Prix :</b></label>
-    <input type="number" placeholder="prix" name="description">
-    </div>
+        <mat-form-field>
+          <mat-label>Nom</mat-label>
+          <input matInput  type="text" placeholder="nom" formControlName="nom" [errorStateMatcher]="matcher">
+        </mat-form-field>
+      </div>
 
 
-<button type="submit">Ajouter</button>
-<!-- <label>
-  <input type="checkbox" checked="checked" name="remember"> Se souvenir de moi
-</label> -->
-</form>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    placeholder="description"
+                    formControlName="description" [errorStateMatcher]="matcher"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Prix</mat-label>
+          <input matInput  type="number" placeholder="prix" formControlName="prix" [errorStateMatcher]="matcher">
+        </mat-form-field>
+      </div>
+
+      <mat-label>Restaurants</mat-label>
+      <div *ngFor="let resto of restaurants">
+        <mat-checkbox (change)="restoChecked($event)" [value]="resto.id.toString()">{{resto.ville}}</mat-checkbox>
+      </div>
+
+
+    <button mat-raised-button type="submit" [disabled]="!produitForm.valid || restaurantsSelected.length===0">Ajouter</button>
+
+    </form>
+
+</div>

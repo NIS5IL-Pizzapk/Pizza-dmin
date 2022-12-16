@@ -4,6 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import {TextFieldModule} from '@angular/cdk/text-field';
+import {MatButtonModule} from '@angular/material/button';
+import { NgToastModule } from 'ng-angular-popup';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +27,7 @@ import { MainPlatGestionComponent } from './gestion/plat/main-plat-gestion/main-
 import { AddSupplementComponent } from './gestion/supplement/add-supplement/add-supplement.component';
 import { ModifySupplementComponent } from './gestion/supplement/modify-supplement/modify-supplement.component';
 import { MainSupplementsGestionComponent } from './gestion/supplement/main-supplements-gestion/main-supplements-gestion.component';
+import { MainMenuGestionComponent } from './gestion/menu/main-menu-gestion/main-menu-gestion.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +43,8 @@ import { MainSupplementsGestionComponent } from './gestion/supplement/main-suppl
     MainPlatGestionComponent,
     AddSupplementComponent,
     ModifySupplementComponent,
-    MainSupplementsGestionComponent
-    
+    MainSupplementsGestionComponent,
+    MainMenuGestionComponent    
   ],
   imports: [
     BrowserModule,
@@ -44,8 +52,14 @@ import { MainSupplementsGestionComponent } from './gestion/supplement/main-suppl
     HttpClientModule,
     MatFormFieldModule,
     MatSelectModule,
-    BrowserAnimationsModule
-  ],
+    BrowserAnimationsModule,
+    MatInputModule,
+    FormsModule,
+    TextFieldModule,
+    MatButtonModule,
+    NgToastModule,
+    ReactiveFormsModule,
+    MatCheckboxModule  ],
   providers: [],
   bootstrap: [AppComponent]
 })

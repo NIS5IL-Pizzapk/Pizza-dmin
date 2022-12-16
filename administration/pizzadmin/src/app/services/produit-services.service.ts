@@ -1,8 +1,8 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from './api-services.service';
-import { HttpHeaders } from '@angular/common/http';
 import { IProduit } from '../modeles/produitsModel';
+import { ApiService } from './api-services.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,27 @@ export class ProduitServicesService {
       responseType: 'json',
     });
   }
+
+  addProduit(produit:IProduit):Observable<any>{
+    console.log(produit)
+    let body = new URLSearchParams();
+    body.set('nom', produit.nom);
+    body.set('description', produit.description);
+    body.set('supplement', produit.supplement.toString());
+    body.set('prix', produit.prix.toString() );
+    body.set('imgPath',produit.imgPath);
+    body.set('restaurantId',produit.restaurantId.toString());
+    console.log(body)
+    return this.apiService.doPost(this.url + 'create', body, {
+      headers: new HttpHeaders().set(
+        'Content-Type',
+        'application/x-www-form-urlencoded'
+      ),
+      observe: 'response',
+      responseType: 'json',
+    });
+  }
+
 
 
   // getBaliseById(id: number): Observable<any> {
