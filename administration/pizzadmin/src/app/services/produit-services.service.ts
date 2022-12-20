@@ -21,7 +21,6 @@ export class ProduitServicesService {
   }
 
   addProduit(produit:IProduit):Observable<any>{
-    console.log(produit)
     let body = new URLSearchParams();
     body.set('nom', produit.nom);
     body.set('description', produit.description);
@@ -29,7 +28,6 @@ export class ProduitServicesService {
     body.set('prix', produit.prix.toString() );
     body.set('imgPath',produit.imgPath);
     body.set('restaurantId',produit.restaurantId.toString());
-    console.log(body)
     return this.apiService.doPost(this.url + 'create', body, {
       headers: new HttpHeaders().set(
         'Content-Type',

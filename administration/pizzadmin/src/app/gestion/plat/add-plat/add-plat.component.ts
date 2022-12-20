@@ -13,8 +13,7 @@ import { TypeServicesService } from 'src/app/services/type-services.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
+  isErrorState(control: FormControl | null): boolean {
     return !!(control && control.invalid && (control.touched));
   }
 }
@@ -28,7 +27,7 @@ export class AddPlatComponent implements OnInit {
   types!: IType[];
   restaurants!:IRestaurant[];
   produitForm = new FormGroup({
-    type: new FormControl('', [Validators.required]),
+    type: new FormControl(null, [Validators.required]),
     nom: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     prix: new FormControl(null, [Validators.required]),
@@ -71,7 +70,6 @@ export class AddPlatComponent implements OnInit {
       // delete this.restaurantsSelected[this.restaurantsSelected.indexOf(value)]
       this.restaurantsSelected.splice(this.restaurantsSelected.indexOf(value),1)
     }
-    console.log(this.restaurantsSelected)
   }
 
 
@@ -85,27 +83,28 @@ export class AddPlatComponent implements OnInit {
         description:this.produitForm.controls.description.value ?? '',
         prix:this.produitForm.controls.prix.value ?? 0,
         imgPath:"image",
-        // restaurantId:this.produitForm.controls['restaurant'].value,
         restaurantId:restoId,
         supplement:false
       }
+      let typeId=this.produitForm.controls.type.value ?? 0;
       this.ProduitServices.addProduit(produit).subscribe({
-        next: (data)=>{
-          this.toast.success({
-            detail:produit.nom+" a été créé avec succès",
-            summary: "Creation",
-            duration:3000    });  
+        next: (dataProduit)=>{
+          this.TypeServices.addTypeToProduit(typeId,dataProduit.body.result.id).subscribe({
+            next:(dataType)=>{
+              console.log(dataType)
+              this.toast.success({
+                detail:dataProduit.body.result.nom+" a été créé avec succès",
+                summary: "Creation",
+                duration:3000    });  
+            }
+          })
         }
       })
 
     });
     this.produitForm.reset()
-    // this.produitForm.markAsUntouched()
     this.produitForm.markAsPristine()
     this.produitForm.markAsUntouched();
-
-    // location.reload();
-    console.log(this.produitForm.controls.description)
 
   }
 

@@ -32,7 +32,7 @@ export class ModifyPlatComponent implements OnInit {
         this.produits=data.body.result
         console.log(this.produits)
         this.toast.info({
-          detail:this.produits.length+" produits trouvé",
+          detail:this.produits.length+" produits trouvés",
           summary: "Found",
           duration:3000    });
         },
