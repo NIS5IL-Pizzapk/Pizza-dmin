@@ -1,4 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit, ɵɵqueryRefresh } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -77,29 +78,29 @@ export class AddPlatComponent implements OnInit {
 
     this.restaurantsSelected.forEach(restoId => {
 
-      let produit:IProduit={
-        id:0,
-        nom:this.produitForm.controls.nom.value ?? '',
-        description:this.produitForm.controls.description.value ?? '',
-        prix:this.produitForm.controls.prix.value ?? 0,
-        imgPath:"image",
-        restaurantId:restoId,
-        supplement:false
-      }
-      let typeId=this.produitForm.controls.type.value ?? 0;
-      this.ProduitServices.addProduit(produit).subscribe({
-        next: (dataProduit)=>{
-          this.TypeServices.addTypeToProduit(typeId,dataProduit.body.result.id).subscribe({
-            next:(dataType)=>{
-              console.log(dataType)
-              this.toast.success({
-                detail:dataProduit.body.result.nom+" a été créé avec succès",
-                summary: "Creation",
-                duration:3000    });  
-            }
-          })
-        }
-      })
+      // let produit:IProduit={
+      //   id:0,
+      //   nom:this.produitForm.controls.nom.value ?? '',
+      //   description:this.produitForm.controls.description.value ?? '',
+      //   prix:this.produitForm.controls.prix.value ?? 0,
+      //   imgPath:"image",
+      //   restaurantId:restoId,
+      //   supplement:false
+      // }
+      // let typeId=this.produitForm.controls.type.value ?? 0;
+      // this.ProduitServices.addProduit(produit).subscribe({
+      //   next: (dataProduit)=>{
+      //     this.TypeServices.addTypeToProduit(typeId,dataProduit.body.result.id).subscribe({
+      //       next:(dataType)=>{
+      //         console.log(dataType)
+      //         this.toast.success({
+      //           detail:dataProduit.body.result.nom+" a été créé avec succès",
+      //           summary: "Creation",
+      //           duration:3000    });  
+      //       }
+      //     })
+      //   }
+      // })
 
     });
     this.produitForm.reset()

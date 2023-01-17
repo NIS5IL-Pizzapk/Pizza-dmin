@@ -1,0 +1,76 @@
+.demo-table {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+#global{
+  width:97vw;
+}
+#menu{
+  // text-align: ;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.9);
+  height: 100vh;
+  width: 12vw;
+}
+
+
+#gestionMenu{
+  font-size: 35px;
+  padding-left: 10px;
+  color:white
+
+}
+
+
+
+#selectionPlat,#selectionSupplement,#selectionDessert,#selectionBoisson,#boutonAccueil{
+  color:white;
+  background-color: rgba(0, 0, 0, 0.24);
+  padding: 10px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  font-size: 20px;
+  font-style: italic;
+  cursor: pointer;
+}
+
+#selectionPlat:hover,#selectionSupplement:hover,#selectionDessert:hover,#selectionBoisson:hover,#boutonAccueil:hover{
+  background-color: white;
+  color:black;
+  font-style:normal;
+}
+
+
+#boutonAccueil{
+  margin-top: 30vh;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  font-size: 25px;
+}
+#selectionSupplement{
+  background-color: white;
+  color:black;
+  font-style:normal;
+}
+
+
+
+#main{
+  margin-left: 11vw;
+}
+
+#titre{
+  position: fixed;
+  margin:0;
+  padding:20px;
+  padding-left: 19px;
+  padding-bottom: 40px;
+  font-size: 40px;
+}
+
+.mainTable{
+  padding-top: 15vh;
+}

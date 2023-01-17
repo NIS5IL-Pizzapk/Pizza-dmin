@@ -20,6 +20,14 @@ export class ProduitServicesService {
     });
   }
 
+  getPlatsData(): Observable<any>{
+    return this.apiService.doGet(this.url + 'plat/get_all', {
+      // headers: this.apiService.setAuthorizationHeader(),
+      observe: 'response',
+      responseType: 'json',
+    });
+  }
+
   addProduit(produit:IProduit):Observable<any>{
     let body = new URLSearchParams();
     body.set('nom', produit.nom);

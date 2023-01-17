@@ -35,7 +35,6 @@
   font-size: 20px;
   font-style: italic;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 #selectionPlat:hover,#selectionSupplement:hover,#selectionDessert:hover,#selectionBoisson:hover,#boutonAccueil:hover{
@@ -50,9 +49,8 @@
   padding-top: 25px;
   padding-bottom: 25px;
   font-size: 25px;
-  transition: 0.3s;
 }
-#selectionPlat{
+#selectionBoisson{
   background-color: white;
   color:black;
   font-style:normal;

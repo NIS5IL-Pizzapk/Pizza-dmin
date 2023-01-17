@@ -1,22 +1,79 @@
 
-body{
-    font-family: UnaV;
-
-    // background: url("../../assets/images/fondpizza.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    overflow: hidden;
-    
+body {
+  font-family: UnaV;
+  height: 100vh;
+  margin: 0;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // background: radial-gradient(
+  //   #666,
+  //   #222
+  // );
 }
-#loginContainer{
-    border: 5px solid rgb(98, 98, 98);
-    // opacity: 0.9;
-    border-radius: 8px;
-    background-color: rgb(184, 184, 184);
 
+.background {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/images/backgroundPizzeriaCut.png");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  }
+
+
+
+
+
+  #sousDiv{
+    // opacity: 0.9;
+    border-radius: 5px;
+
+      // background-color:#66a266 ;
+      background-color:rgb(0, 0, 0) ;
+      opacity: 0.75;
+      width: 20vw;
+      height: 400px;
+      margin:auto;
+      margin-top:8vh;
+      padding:30px;
+      padding-top:10px;
+      padding-left: 200px;
+      padding-right: 200px; 
+      transition:1s;
+}
+
+#loginContainer{
+  color:white;
+    // opacity: 0.9;
+  // background: radial-gradient(
+  //   #90EE90	,
+  //   #90EE90   );
+    background-color:#a0eba000 ;
     margin:10px;
-    width: 70vw;
-    height: 60vh;
+    width: 60vw;
+    height: 70vh;
+    // box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.573);
+}
+
+#loginContainer:hover{
+
+  #sousDiv{
+    padding-left: 30px;
+    padding-right: 30px; 
+    opacity: 0.95;
+    border-radius: 10px;
+    
+  }
+  .titrecontainer{
+    border-bottom: 3px solid white;
+  }
+  // .logo{
+  //   width:140%;
+  // }
+  // #logo{
+  //   top:10vh;
+  //   left:80px;
+  // }
 }
 #mainDiv
 {    
@@ -24,23 +81,36 @@ body{
   display:flex;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(2px);
+
 }
 
+#logo{
+  position: absolute;
+  left:40px;
+  top:30px;
+  transition: 1s;
+  opacity: 1;
+}
 
 .logo{
-    margin:20px;
-    width: 60%;
-    height: auto;
-    transition: 0.5s;
+  width: 100%;
+  transition: 1s;
+
 
 }
+
 .titrecontainer{
     font-family: UnaVBold;
-    display: flex;
     flex-direction: row;
+    text-align: center;
+    padding-top:1px;
     // justify-content: center;
     // align-items: center;
     font-size: 1.5vw;
+    border-bottom: 6px solid white;
+    transition: 0.3s;
+
 }
 
   /* Full-width inputs */
@@ -58,13 +128,20 @@ body{
     border: 1px solid #ccc;
     
     box-sizing: border-box;
+
   }
   
+
+  #submit{
+    padding-top:15px;
+
+  }    
+
   /* Set a style for all buttons */
   button {
-    background-color: rgb(98, 98, 98);
+    background-color: #133915;
     border: 1px solid rgb(48, 48, 48);
-    transition: background-color 1s ease;
+    // transition: background-color 1s ease;
 
 
     color: white;
@@ -74,30 +151,12 @@ body{
     cursor: pointer;
     width: 100%;
   }
-  
-  // #loginContainer:hover{
-  //   // input[type=text]{
-  //   //     background-color: rgb(160, 204, 169); 
-  //   //     border: 1px solid rgb(110, 195, 127);
-  //   //     transition: background-color 0.8s ease;
 
-  //   // }
-  //   // button{
-  //   //     background-color: rgb(222, 157, 158);
-  //   //     border: 1px solid rgb(205, 104, 105);
-  //   //     transition: background-color 0.8s ease;
-  //   // }
-  //   // .logo{
-  //   //   width:70%;
-  //   //   height: auto;
-  //   //   transition: 0.5s;
-  //   // }
-  //   // opacity: 1;
-  // }
   /* Add a hover effect for buttons */
   button:hover {
-    opacity: 0.8;
-  }
+    background: radial-gradient(
+      #215b23,
+      #133915	   );  }
   
   /* Add padding to containers */
   .container {

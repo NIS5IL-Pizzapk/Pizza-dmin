@@ -1,3 +1,5 @@
+import { IType } from 'src/app/modeles/typesModel';
+
 export interface IProduit {
     id:number;
     description: string;
@@ -6,5 +8,7 @@ export interface IProduit {
     prix:number;
     restaurantId:number;
     supplement:boolean;
+    bloqueCreneau:boolean;
+    typeDeProduitId:number;
   }
   
