@@ -55,6 +55,7 @@ body{
     align-items: center;
     justify-content: center;
     background-color:white;
+    
 }
 
 #hori1,#hori3{
@@ -65,7 +66,7 @@ body{
 #gestionMenu,#gestionResto,#gestionVariable,#gestionUser{
     width: 90%;
     height: 95%;
-    background-color: white;
+    background-color: black;
     background-position: center center;
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -73,18 +74,18 @@ body{
     cursor: pointer;
 }
 
-#gestionMenu{
-background-image: url('../../assets/images/menu.png');
-}
-#gestionResto{
-    background-image: url('../../assets/images/restaurant.png');
-}
-#gestionVariable{
-    background-image: url('../../assets/images/variable.png');
-}
-#gestionUser{
-    background-image: url('../../assets/images/user.png');
-}
+// #gestionMenu{
+// background-image: url('../../assets/images/menu.png');
+// }
+// #gestionResto{
+//     background-image: url('../../assets/images/restaurant.png');
+// }
+// #gestionVariable{
+//     background-image: url('../../assets/images/variable.png');
+// }
+// #gestionUser{
+//     background-image: url('../../assets/images/user.png');
+// }
 
 #gestionMenu:hover,#gestionResto:hover,#gestionVariable:hover,#gestionUser:hover{
     width: 100%;

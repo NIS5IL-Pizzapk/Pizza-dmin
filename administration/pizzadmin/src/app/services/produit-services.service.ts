@@ -28,6 +28,35 @@ export class ProduitServicesService {
     });
   }
 
+  modifyPlat(produit:IProduit): Observable<any>{
+    let body = new URLSearchParams();
+    body.set('id',produit.id.toString())
+    body.set('nom', produit.nom);
+    body.set('description', produit.description);
+    body.set('supplement', produit.supplement.toString());
+    body.set('prix', produit.prix.toString() );
+    body.set('imgPath',produit.imgPath);
+    body.set('restaurantId',produit.restaurantId.toString());
+    body.set('bloqueCreneau',produit.bloqueCreneau.toString());
+    body.set('typeDeProduitId',produit.typeDeProduitId.toString());
+    return this.apiService.doPut(this.url + 'update/'+produit.id,body, {
+      headers: new HttpHeaders().set(
+        'Content-Type',
+        'application/x-www-form-urlencoded'
+      ),
+      // headers: this.apiService.setAuthorizationHeader(),
+      observe: 'response',
+      responseType: 'json',
+    });
+  }
+  deleteProduct(id:number):Observable<any>{
+    return this.apiService.doDelete(this.url + 'delete/'+id, {
+      // headers: this.apiService.setAuthorizationHeader(),
+      observe: 'response',
+      responseType: 'json',
+    });
+  }
+
   addProduit(produit:IProduit):Observable<any>{
     let body = new URLSearchParams();
     body.set('nom', produit.nom);
@@ -36,6 +65,8 @@ export class ProduitServicesService {
     body.set('prix', produit.prix.toString() );
     body.set('imgPath',produit.imgPath);
     body.set('restaurantId',produit.restaurantId.toString());
+    body.set('bloqueCreneau',produit.bloqueCreneau.toString());
+    body.set('typeDeProduitId',produit.typeDeProduitId.toString());
     return this.apiService.doPost(this.url + 'create', body, {
       headers: new HttpHeaders().set(
         'Content-Type',

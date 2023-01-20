@@ -40,4 +40,5 @@ export class LoginPageComponent implements OnInit {
     this.frozen=this.frozen==false
   }
 
+
 }

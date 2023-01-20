@@ -26,6 +26,7 @@ import { MainPlatGestionComponent } from './gestion/plat/main-plat-gestion/main-
 import { MainSupplementsGestionComponent } from './gestion/supplement/main-supplements-gestion/main-supplements-gestion.component';
 import { MainBoissonGestionComponent } from './gestion/main-boisson-gestion/main-boisson-gestion.component';
 import { MainDessertGestionComponent } from './gestion/main-dessert-gestion/main-dessert-gestion.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { MainDessertGestionComponent } from './gestion/main-dessert-gestion/main
     ReactiveFormsModule,
     MatCheckboxModule,
     MatTableModule,
-    MatPaginatorModule  ],
+    MatPaginatorModule,
+    MatDialogModule  ],
   providers: [],
   bootstrap: [AppComponent]
 })
