@@ -38,10 +38,28 @@
 
 
       <div id="main">
-        <h1 id="titre">Supplements </h1>
+
+        <h1 id="titre">Suppléments</h1>
+        <div id="nouveau">
+          <button id="nouveauButton" mat-raised-button (click)="ajouter()">Nouveau Supplément</button>
+        </div>
         <div class="mainTable">
+          <div id="inputDiv">
+            <mat-form-field appearance="standard">
+              <mat-label>Filter</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Search columns" #input>
+          </mat-form-field>            
+          </div>
+
           <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
             <!-- Position Column -->
+            <ng-container matColumnDef="trucs">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element">
+                <a id="modifier" (click)="modifier(element.id)">Éditer</a>
+                <a id="copy" (click)="copier(element.id)">Copier</a>  
+                <a id="delete" (click)="delete(element.id)">Supprimer</a> </td>
+            </ng-container>
             <ng-container matColumnDef="ID">
               <th mat-header-cell *matHeaderCellDef> ID. </th>
               <td mat-cell *matCellDef="let element"> {{element.id}} </td>

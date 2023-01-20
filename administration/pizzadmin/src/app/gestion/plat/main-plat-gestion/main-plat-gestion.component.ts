@@ -12,7 +12,7 @@ import { IRestaurant } from 'src/app/modeles/restaurantsModel';
 import { IType } from 'src/app/modeles/typesModel';
 import { TypeServicesService } from 'src/app/services/type-services.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddPlatComponent } from '../add-plat/add-plat.component';
+import { AddPlatComponent, DialogData } from '../add-plat/add-plat.component';
 
 @Component({
   selector: 'app-main-plat-gestion',
@@ -32,32 +32,32 @@ export class MainPlatGestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllPlats()
+    this.getAllSupplements()
+   
   }
 
 
-  getAllPlats(): void {
+  getAllSupplements(): void {
     this.ProduitServices.getPlatsData().subscribe({
       next: (data) => {
         let allproducts: IProduit[] = data.body.result
         this.produits = []
-        allproducts.forEach((produit: IProduit) => {
-          if (produit.supplement == false && produit.typeDeProduitId != 6 && produit.typeDeProduitId != 5) {
-            this.produits.push(produit)
-          }
-        });
-
-        this.toast.info({
-          detail: this.produits.length + " plat(s) trouvés",
-          summary: "Found",
-          duration: 3000
-        });
         this.restaurantServices.getRestaurantsData().subscribe({
           next: (data) => {
             this.restaurants = data.body.result
             this.TypeServices.getTypesData().subscribe({
               next: (data) => {
                 this.types = data.body.result
+                allproducts.forEach((produit: IProduit) => {
+                  if (produit.supplement == false && this.getTypeNameFromId(produit.typeDeProduitId)  != "boisson" && this.getTypeNameFromId(produit.typeDeProduitId)  != "dessert") {
+                    this.produits.push(produit)
+                  }
+                });
+                this.toast.info({
+                  detail: this.produits.length + " plat(s) trouvés",
+                  summary: "Found",
+                  duration: 1500
+                });
                 this.dataSource = new MatTableDataSource<IProduit>(this.produits);
                 this.dataSource.paginator = this.paginator;
               }
@@ -100,7 +100,7 @@ export class MainPlatGestionComponent implements OnInit {
     this.router.navigate([dir])
   }
 
-  addPlat(produit: IProduit): void {
+  addProduit(produit: IProduit): void {
     this.ProduitServices.addProduit(produit).subscribe({
       next: (data) => {
         this.produits.push(data.body.result)
@@ -109,7 +109,7 @@ export class MainPlatGestionComponent implements OnInit {
         this.toast.success({
           detail: data.body.result.nom + " créé",
           summary: "Created",
-          duration: 3000
+          duration: 1500
         });
       }
     }
@@ -117,14 +117,16 @@ export class MainPlatGestionComponent implements OnInit {
   }
 
   public ajouter(): void {
-    let dialogRef = this.dialog.open(AddPlatComponent, {
+    let dialogRef = this.dialog.open<AddPlatComponent, DialogData, IProduit>(AddPlatComponent, {
       height: '550px',
       width: '400px',
+      data: {type:"global",produit:null}
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log("result in add", result)
       if (!result) return;
-      this.addPlat(result)
+
+      this.addProduit(result)
     });
   }
 
@@ -132,10 +134,10 @@ export class MainPlatGestionComponent implements OnInit {
     let produit = this.produits.find((p) => { return p.id == id })
     if (!produit) return;
     console.log(produit)
-    let dialogRef = this.dialog.open<AddPlatComponent, IProduit, IProduit>(AddPlatComponent, {
+    let dialogRef = this.dialog.open<AddPlatComponent, DialogData, IProduit>(AddPlatComponent, {
       height: '550px',
       width: '400px',
-      data: produit
+      data: {type:"global",produit:produit}
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (!result) return;
@@ -147,14 +149,14 @@ export class MainPlatGestionComponent implements OnInit {
     let produit = this.produits.find((p) => { return p.id == id })
     if (!produit) return;
     console.log(produit)
-    let dialogRef = this.dialog.open<AddPlatComponent, IProduit, IProduit>(AddPlatComponent, {
+    let dialogRef = this.dialog.open<AddPlatComponent, DialogData, IProduit>(AddPlatComponent, {
       height: '550px',
       width: '400px',
-      data: produit
+      data: {type:"global",produit:produit}
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (!result) return;
-      this.addPlat(result)
+      this.addProduit(result)
     });
   }
 
@@ -169,7 +171,7 @@ export class MainPlatGestionComponent implements OnInit {
         this.toast.success({
           detail: produit.nom + " mis à jour",
           summary: "Updated",
-          duration: 3000
+          duration: 1500
         });
       }
     }
@@ -180,7 +182,7 @@ export class MainPlatGestionComponent implements OnInit {
     let produit = this.produits.find((p) => { return p.id == id })
     if (!produit) return;
     let prod = produit; //VS CODE PROBLEM
-    if (window.confirm('Voulez-vous vraiment supprimer ce plat? (' + this.getTypeNameFromId(prod.typeDeProduitId) + " : " + prod.nom + ")")) {
+    if (window.confirm('Voulez-vous vraiment supprimer ce plat? (' + this.getTypeNameFromId(prod.typeDeProduitId) + ' : "' + prod.nom + '")')) {
       this.ProduitServices.deleteProduct(id).subscribe({
         next: (data) => {
           // this.produits.push(data.body.result)
@@ -191,7 +193,7 @@ export class MainPlatGestionComponent implements OnInit {
           this.toast.success({
             detail: prod.nom + " supprimé(e)",
             summary: "Deleted",
-            duration: 3000
+            duration: 1500
           });
         }
       }

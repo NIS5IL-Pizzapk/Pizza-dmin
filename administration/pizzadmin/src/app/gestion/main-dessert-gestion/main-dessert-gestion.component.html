@@ -1,102 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-<!-- 
+  <!-- 
     <table mat-table [dataSource]="produits">
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
       </table> -->
-      <div id="global">
+  <div id="global">
 
-      <div id="menu">
-        <h1 id="gestionMenu">Gestion de Menu</h1>
-        <div id="selectionPlat"  (click)="goTo('/gestion/menu/plats')">
-          Plats
-        </div>
-        <div id="selectionSupplement" (click)="goTo('/gestion/menu/supplements')">
-          Supplements
-        </div>
-        <div id="selectionDessert" >
-          Desserts
-        </div>
-        <div id="selectionBoisson" (click)="goTo('/gestion/menu/boissons')">
-          Boissons
-        </div>
-
-        <div id="boutonAccueil" (click)="goTo('accueil')">
-          Accueil
-        </div>
-
+    <div id="menu">
+      <h1 id="gestionMenu">Gestion de Menu</h1>
+      <div id="selectionPlat" (click)="goTo('/gestion/menu/plats')">
+        Plats
+      </div>
+      <div id="selectionSupplement" (click)="goTo('/gestion/menu/supplements')">
+        Supplements
+      </div>
+      <div id="selectionDessert">
+        Desserts
+      </div>
+      <div id="selectionBoisson" (click)="goTo('/gestion/menu/boissons')">
+        Boissons
       </div>
 
-
-
-      <div id="main">
-        <h1 id="titre">Desserts </h1>
-        <div class="mainTable">
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-            <!-- Position Column -->
-            <ng-container matColumnDef="ID">
-              <th mat-header-cell *matHeaderCellDef> ID. </th>
-              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="nom">
-              <th mat-header-cell *matHeaderCellDef> Nom </th>
-              <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="prix">
-              <th mat-header-cell *matHeaderCellDef> Prix </th>
-              <td mat-cell *matCellDef="let element"> {{element.prix}}€ </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="restaurant">
-              <th mat-header-cell *matHeaderCellDef> Restaurant </th>
-              <td mat-cell *matCellDef="let element"> {{getRestoNameFromId(element.restaurantId)}} </td>
-            </ng-container>
-            
-            <ng-container matColumnDef="types">
-              <th mat-header-cell *matHeaderCellDef> Types </th>
-              <td mat-cell *matCellDef="let element"> 
-                <li *ngFor="let type of element.type_de_produits">
-                  {{type.nom}}
-    
-                </li>
-    
-              </td>
-            </ng-container>
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-    
-          <mat-paginator [pageSizeOptions]="[10, 20, 40]"
-          showFirstLastButtons
-          aria-label="Select page of periodic elements">
-            </mat-paginator>
-        </div>
-
+      <div id="boutonAccueil" (click)="goTo('accueil')">
+        Accueil
       </div>
+
     </div>
 
 
-      
-    <!-- <h1 style="text-align:center">Gestion de plats</h1>
-    <div id="global">
-        <div id="left">
-            <app-add-plat></app-add-plat>
+
+    <div id="main">
+
+      <h1 id="titre">Desserts</h1>
+      <div id="nouveau">
+        <button id="nouveauButton" mat-raised-button (click)="ajouter()">Nouveau dessert</button>
+      </div>
+      <div class="mainTable">
+        <div id="inputDiv">
+          <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search columns" #input>
+          </mat-form-field>
         </div>
-        <div id="right">
-            <app-modify-plat></app-modify-plat>
-        </div>
-    </div> -->
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+          <!-- Position Column -->
+          <ng-container matColumnDef="trucs">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+              <a id="modifier" (click)="modifier(element.id)">Éditer</a>
+              <a id="copy" (click)="copier(element.id)">Copier</a>
+              <a id="delete" (click)="delete(element.id)">Supprimer</a>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef> ID. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="prix">
+            <th mat-header-cell *matHeaderCellDef> Prix </th>
+            <td mat-cell *matCellDef="let element"> {{element.prix}}€ </td>
+          </ng-container>
+
+          <ng-container matColumnDef="restaurant">
+            <th mat-header-cell *matHeaderCellDef> Restaurant </th>
+            <td mat-cell *matCellDef="let element"> {{getRestoNameFromId(element.restaurantId)}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="types">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let element">
+              {{getTypeNameFromId(element.typeDeProduitId)}}
+
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 20, 40]" showFirstLastButtons
+          aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+
+    </div>
+  </div>
+
+
+
 
 </body>
+
 </html>

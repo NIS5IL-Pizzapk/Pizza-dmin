@@ -37,51 +37,54 @@ export class AddPlatComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
 
-  constructor(private ProduitServices:ProduitServicesService,
-            private RestaurantServices:RestaurantServicesService,
+  constructor(private RestaurantServices:RestaurantServicesService,
               private TypeServices:TypeServicesService,
-              private toast: NgToastService,
               private dialogRef: MatDialogRef<AddPlatComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: IProduit
+              @Inject(MAT_DIALOG_DATA) public data: DialogData
               ) {
                 
                }
 
   ngOnInit(): void {
     this.TypeServices.getTypesData().subscribe({
-      next: (data) => {
-        this.types=data.body.result
-        for(let x=this.types.length-1;x>=0;x--){
-          if (this.types[x].nom==="boisson" || this.types[x].nom==="dessert"){
-            this.types.splice(this.types.indexOf(this.types[x]),1)
-        }}  
-        if(this.data){
-          this.produitForm.controls.type.setValue(this.data.typeDeProduitId)
+      next: (res) => {
+        this.types=res.body.result
+        if(this.data.type=="global")this.types = this.types.filter((t) => t.nom != "boisson" && t.nom != "dessert")
+        if(this.data.type=="boisson"){
+          this.types= this.types.filter((t) => t.nom == "boisson");
+          this.produitForm.controls.type.setValue(this.types[0].id);
+        }
+        if(this.data.type=="dessert"){
+          this.types= this.types.filter((t) => t.nom == "dessert");
+          this.produitForm.controls.type.setValue(this.types[0].id);
+        }
+        if(this.data.produit){
+          this.produitForm.controls.type.setValue(this.data.produit.typeDeProduitId)
         }
         },
       error: (err: HttpErrorResponse) => {},
     })
 
     this.RestaurantServices.getRestaurantsData().subscribe({
-      next: (data) => {
-        this.restaurants=data.body.result
-        if(this.data){
-          this.produitForm.controls.restaurant.setValue(this.data.restaurantId)
+      next: (res) => {
+        this.restaurants=res.body.result
+        if(this.data.produit){
+          this.produitForm.controls.restaurant.setValue(this.data.produit.restaurantId)
         }
         },
       error: (err: HttpErrorResponse) => {},
     })
 
-    if (this.data){
-      this.produitForm.patchValue(this.data);
+    if (this.data.produit){
+      this.produitForm.patchValue(this.data.produit);
     }
   }
 
 
   onSubmit():void{
     let id=0
-    if(this.data){
-      id=this.data.id
+    if(this.data.produit){
+      id=this.data.produit.id
     }
         let produit:IProduit={
         id:id,
@@ -102,4 +105,9 @@ export class AddPlatComponent implements OnInit {
 
   }
 
+}
+
+export interface DialogData{
+  type : string,
+  produit: IProduit|null
 }
