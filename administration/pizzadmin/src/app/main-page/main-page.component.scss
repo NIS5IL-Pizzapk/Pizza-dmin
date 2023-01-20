@@ -1,19 +1,27 @@
 #header{
-    height: 15vh;
+    height: 10vh;
     width: 100%;
-    background-color: white; 
-    border-bottom: 1vh solid black;
-
+    background-color: rgb(19, 19, 19); 
+    border: none;
+    color: white;
 }
 
 body{
     margin:0;
-    overflow: hidden
+    overflow: hidden;
+    background-image: url('https://wallpapershome.com/images/pages/pic_h/16053.jpg');
+    background-position: center center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.Body {
+    backdrop-filter: blur(2px);
 }
 
 #titre{
     margin: 0;
-    padding-top:60px;
+    padding-top:20px;
     padding-left:20px;
     font-size: 33px;
 }
@@ -22,10 +30,9 @@ body{
 //sans le header ici, en position absolute
 #logout{
     position: absolute;
-        padding-top: 16px;
         right:0px;
-        height: 6vw;
-        width:6vw;
+        height: 70px;
+        width: 70px;
         text-align: right;
     }
     
@@ -36,7 +43,7 @@ body{
     }
 
 #global{
-    height: 84vh;
+    height: 90vh;
     
 }
 
@@ -54,7 +61,7 @@ body{
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color:white;
+    border: none;
 }
 
 #hori1,#hori3{
@@ -64,8 +71,7 @@ body{
 
 #gestionMenu,#gestionResto,#gestionVariable,#gestionUser{
     width: 90%;
-    height: 95%;
-    background-color: white;
+    height: 100%;
     background-position: center center;
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -74,25 +80,50 @@ body{
 }
 
 #gestionMenu{
-background-image: url('../../assets/images/menu.png');
+    border-radius: 15px;
+    margin-top: 30px;
+    height: 270px;
+    width: 450px;
+    background-color: rgb(19, 19, 19); 
+    background-image: url('https://cdn-icons-png.flaticon.com/512/151/151409.png');
 }
 #gestionResto{
-    background-image: url('../../assets/images/restaurant.png');
+    border-radius: 15px;
+    margin-top: 30px;
+    height: 270px;
+    width: 450px;
+    background-color: rgb(19, 19, 19);
+    background-image: url('https://cdn-icons-png.flaticon.com/512/93/93192.png');
 }
 #gestionVariable{
-    background-image: url('../../assets/images/variable.png');
+    border-radius: 15px;
+    margin-top: 15px;
+    height: 270px;
+    width: 450px;
+    background-color: rgb(19, 19, 19); 
+    background-image: url('https://fr.seaicons.com/wp-content/uploads/2015/11/Time-Today-icon.png');
 }
+
 #gestionUser{
-    background-image: url('../../assets/images/user.png');
+    border-radius: 15px;
+    margin-top: 15px;
+    height: 270px;
+    width: 450px;
+    background-color: rgb(19, 19, 19); 
+    background-image: url('https://www.iconpacks.net/icons/1/free-users-icon-267-thumb.png');
 }
 
 #gestionMenu:hover,#gestionResto:hover,#gestionVariable:hover,#gestionUser:hover{
-    width: 100%;
-    height: 100%;
+    scale: 1.1;
+    background-color: rgb(154, 154, 154);
 }
 
 
 #textGestion{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     color:white;
     text-align: center;
     font-size: 40px;
